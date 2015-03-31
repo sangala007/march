@@ -4,11 +4,11 @@
 var auth = require('../lib/auth');
 
 module.exports = function (app, AccountController) {
-  app.get('/login', auth.isAuthenticated, AccountController.login);
-  app.post('/login', auth.isAuthenticated, AccountController.postLogin);
-  app.get('/signup', auth.isAuthenticated, AccountController.signup);
-  app.post('/signup', auth.isAuthenticated, AccountController.postSignup);
-  app.get('/forgot', auth.isAuthenticated, AccountController.forgot);
-  app.post('/forgot', auth.isAuthenticated, AccountController.postForgot);
+  app.get('/login', auth.isNotAuthenticated, AccountController.login);
+  app.post('/login', auth.isNotAuthenticated, AccountController.postLogin);
+  app.get('/signup', auth.isNotAuthenticated, AccountController.signup);
+  app.post('/signup', auth.isNotAuthenticated, AccountController.postSignup);
+  app.get('/forgot', auth.isNotAuthenticated, AccountController.forgot);
+  app.post('/forgot', auth.isNotAuthenticated, AccountController.postForgot);
   app.get('/logout', auth.isAuthenticated, AccountController.logout);
 };

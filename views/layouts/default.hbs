@@ -7,11 +7,25 @@
 	    <link rel="stylesheet" href="/vendor/mocha.css">
     {{/if}}
     <script src="//code.jquery.com/jquery-2.0.2.min.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
   </head>
   
   <body>
   	<header><img src="/images/logo.gif"></header>
+  	<br />
+
+	{{> flash}}
+
+	{{#if user}}
+		<div style="text-align: center;">Hello, {{user.email}}</div>
+	{{/if}}
+
 	{{{body}}}
+
+	{{> footer}}
 
 	{{#if showTests}}
 		<div id="mocha"></div>

@@ -29,7 +29,10 @@
     "lodash": "~3.5.0",
     "when": "~3.7.2",
     "events": "~1.0.2",
-    "lusca": "~1.0.2"
+    "lusca": "~1.0.2",
+    "passport": "~0.2.1",
+    "passport-local": "~1.0.0",
+    "bcrypt-nodejs": "0.0.3"
   },
   "devDependencies": {},
   "scripts": {

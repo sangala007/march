@@ -33,14 +33,12 @@ function loadAppModules() {
 	collections = require('./collections');
 	controllers = require('./controllers');
 	routes      = require('./routes');
-	// widget      = require('./lib/widget');
 
 	return {
 		models      : models,
 	    collections : collections,
 		controllers : controllers,
 		routes      : routes,
-	    // widget      : widget
 	};
 }
 
@@ -48,7 +46,7 @@ function loadAppModules() {
  * Sets up route by matching routes to their controllers.
 */
 function setupRoutes(App, routes, controllers) {
-	_.keys(routes).forEach(function (route) {
+	_.keys(routes).forEach(function(route) {
 		// Call routes with their corresponding controllers.
 		routes[route](App, controllers[route]);
 	});
@@ -56,7 +54,7 @@ function setupRoutes(App, routes, controllers) {
 	// Add custom 404 page.
 	App.use(function(req, res) {
 		res.status(404);
-		res.render('4041');
+		res.render('404');
 	});
 
 	// Error handling.
@@ -89,7 +87,7 @@ var App = {
 	/*
 	* Override express GET method so we can spy on the routes passed.
 	*/
-	get: function () {
+	get: function() {
 		var args = _.toArray(arguments);
 		var routeString = args[0];
 
@@ -100,7 +98,7 @@ var App = {
 	/*
 	* Override express POST method so we can spy on the routes passed.
 	**/
-	post: function () {
+	post: function() {
 		var args = _.toArray(arguments);
 		var routeString = args[0];
 
@@ -111,14 +109,14 @@ var App = {
 	/*
 	* Application events handler.
 	*/
-	on: function () {
+	on: function() {
 		emitter.on.apply(this, _.toArray(arguments));
 	},
 
 	/*
 	* Application event dispatcher.
 	*/
-	emit: function () {
+	emit: function() {
 		emitter.emit.apply(this, _.toArray(arguments));
 	},
 
@@ -263,9 +261,6 @@ var App = {
 			next();
 		});
 
-		// Add widget middleware
-		// server.use(modules.widget());
-
 		// Sets up route by matching routes to their controllers.
 	    setupRoutes(self, modules.routes, modules.controllers);
 
@@ -277,21 +272,5 @@ var App = {
 		});
 	}
 };
-
-var WidgetAPI = {};
-
-WidgetAPI.on            = App.on;
-WidgetAPI.emit          = App.emit;
-WidgetAPI.getController = App.getController;
-WidgetAPI.getCollection = App.getCollection;
-WidgetAPI.getModel      = App.getModel;
-WidgetAPI.getCache      = App.getCache;
-WidgetAPI.setCache      = App.setCache;
-WidgetAPI.getConfig     = App.getConfig;
-WidgetAPI.cacheExists   = App.cacheExists;
-
-App.widgetAPI = function () {
-	return WidgetAPI;
-}
 
 module.exports = App;

@@ -8,14 +8,14 @@ var config = {
 			client     : 'mysql',
 			connection : {
 				host     : 'localhost',
-				user     : 'node', 
-				password : 'no1de2', 
+				user     : '', 
+				password : '', 
 				port     : 3306, 
-				database : 'february',
+				database : '',
 				charset  : 'utf8'
 			}
 		},
-		cookieSecret : '123456ASDFGH',
+		cookieSecret : '',
 		mongodbUrl   : 'http://localhost:27017'
 	},
 
@@ -26,14 +26,14 @@ var config = {
 			client     : 'mysql',
 			connection : {
 				host     : 'localhost',
-				user     : 'node', 
-				password : 'no1de2', 
+				user     : '', 
+				password : '', 
 				port     : 3306, 
-				database : 'february',
+				database : '',
 				charset  : 'utf8'
 			}
 		},
-		cookieSecret : '123456ASDFGH',
+		cookieSecret : '',
 		mongodbUrl   : 'http://localhost:27017'
 	}
 };

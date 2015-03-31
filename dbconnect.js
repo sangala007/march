@@ -14,7 +14,7 @@ module.exports = function(config) {
 			min: 0,
 			max: 5
 		},
-		debug: false
+		debug: true
 	});
 	Bookshelf = require('bookshelf')(knex);
 

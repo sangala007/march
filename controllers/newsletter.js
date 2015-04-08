@@ -1,13 +1,8 @@
 "use strict";
 
-var App = require('../app');
-
-var NewsletterController = {
-
+module.exports = {
 	index: function(req, res, next) {
 		res.render('newsletter/index');
 	}
-
 };
 
-module.exports = App.controller('Newsletter', NewsletterController);

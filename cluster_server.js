@@ -26,6 +26,6 @@ cluster.on('exit', function(worker, code, signal) {
 	startWorker();
 });
 
-os.cpus().forEach(function() {
+// os.cpus().forEach(function() {
 	startWorker();
-});
+// });

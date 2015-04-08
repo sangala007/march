@@ -1,10 +1,9 @@
 "use strict";
 
 const
-	App    = require('../app'),
 	Person = require('../models/person');
 
-var PeopleController = {
+module.exports = {
 
 	index: function(req, res, next) {
 		new Person().fetchAll({
@@ -24,6 +23,5 @@ var PeopleController = {
 	}
 };
 
-module.exports = App.controller('People', PeopleController);
 
 

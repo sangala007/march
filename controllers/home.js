@@ -1,8 +1,6 @@
 "use strict";
 
-var App = require('../app');
-
-var HomeController = {
+module.exports = {
 
 	index: function(req, res, next) {
 		res.cookie('kokot', 'ivan');
@@ -21,4 +19,6 @@ var HomeController = {
 	}
 };
 
-module.exports = App.controller('Home', HomeController);
+
+
+

@@ -1,12 +1,11 @@
 "use strict";
 
 const
-	App      = require('../app'),
 	Person   = require('../models/person'),
 	passport = require('passport'),
 	_        = require('lodash');
 
-var AccountController = {
+module.exports = {
 
 	/*
 	* GET: /login
@@ -113,4 +112,3 @@ var AccountController = {
 
 };
 
-module.exports = App.controller('Account', AccountController);

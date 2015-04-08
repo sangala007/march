@@ -32,7 +32,8 @@
     "lusca": "~1.0.2",
     "passport": "~0.2.1",
     "passport-local": "~1.0.0",
-    "bcrypt-nodejs": "0.0.3"
+    "bcrypt-nodejs": "0.0.3",
+    "express-load": "~1.1.14"
   },
   "devDependencies": {},
   "scripts": {

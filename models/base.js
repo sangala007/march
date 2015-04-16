@@ -33,29 +33,18 @@ Bookshelf.Model = Bookshelf.Model.extend({
 		return json;
 	},
 
-
 	saving: function (newObj, attr, options) {
-		var self = this;
-		var table = self.getTableName();
+		let 
+			self  = this,
+			table = self.getTableName(),
+			now   = new Date();
 
-		// if only updating views field
-		if (self.hasChanged('views') && !self.isNew() || self.hasChanged('resetPasswordToken')) {
-			return;
-		}
+		if (self.isNew()) {
+			self.set('created_on', now);
+			self.set('updated_on', now);
 
-		// if user has no access to content
-		if (!self.isNew() && !self.hasPermission()) {
-			throw new Error('Access restricted');
-		}
-
-		// if new entry or updating, clear cache
-		if (self.isNew() || !self.hasChanged('views')) {
-			App.clearCache();
-		}
-
-		// if updating and has updated_by feild, set it to current user
-		if (!self.isNew() && Databases[table].updated_by) {
-			self.set('updated_by', App.user.get('id'));
+		} else {
+			self.set('updated_on', now);
 		}
 	},
 

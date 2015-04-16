@@ -463,43 +463,27 @@ ul.styled-lists li:before {
     padding: 0;
 }
 
-/* Desktop */
-@media (min-width: 768px) {
-  /* Sidebar modules for boxing content
-  .blog-sidebar .panel {
-    margin-left: -15px; 
-    margin-right:-15px; 
-    border-radius: 4px 4px 0px 0px;
-  }
-
-  .sidebar-module {
-    margin: 0 -15px 15px;
-  } */
-
-  .panel-footer {
-    text-align: center;
-  }
+.form-horizontal select {
+  padding: 5px;
+  font-size: 16px;
+  border: 0;
+  border-radius: 0;
+  height: 34px;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  /* Sidebar modules for boxing content */
 
-  .meetups-tile .col-sm-6 img {
-    width: 100%!important;
-    height: auto!important;
-  }
 
-  .btn.btn-lg {
-    margin-bottom: 5px;
-  }
 
-  .sidebar-module {
-    margin-top: 15px;
-  }
 
-  .navbar-toggle { 
-    border-radius: 0px;
-    border: 0;
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+

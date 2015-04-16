@@ -1,11 +1,63 @@
 "use strict";
 
 const
-	Person   = require('../models/person'),
+	User     = require('../models/user'),
 	passport = require('passport'),
 	_        = require('lodash');
 
 module.exports = {
+
+	/*
+	* GET: /account/create
+	*/
+	create: function(req, res, next) {
+		res.render('account/create');
+	},
+
+	/*
+	* POST: /account/create
+	*/
+	postCreate: function(req, res, next) {
+		req.assert('name', 'Name cannot be blank.').notEmpty();
+		req.assert('email', 'Email is not valid.').isEmail();
+		req.assert('password', 'Password must be at least 6 characters long.').len(6);
+		req.assert('confirmPassword', 'Passwords do not match.').equals(req.body.password);
+		req.assert('secret', 'Secret cannot be blank.').notEmpty();
+		req.assert('phone', 'Phone cannot be blank.').notEmpty();
+
+		var errors = req.validationErrors();
+
+		if (errors) {
+			req.flash('errors', errors);
+			res.render('account/create', {params: req.body});
+			return;
+		}
+
+		// Save new user.
+		User.forge({
+			name     : req.body.name,
+			email    : req.body.email,
+			password : req.body.password,
+			secret   : req.body.secret,
+			phone    : req.body.phone
+
+		}).save().then(function(model) {
+			req.flash('success', {msg: 'Success!'});
+
+			req.logIn(model, function(err) {
+				if (err) {
+					return next(err);
+				}
+
+				res.redirect('/system/create');
+			});
+
+		}).otherwise(function (error) {
+			console.log(error);
+			req.flash('errors', {'msg': error.message});
+			res.redirect('/account/create');
+		});
+	},
 
 	/*
 	* GET: /login
@@ -25,7 +77,7 @@ module.exports = {
 
 		if (errors) {
 			req.flash('errors', {msg: errors});
-			return res.redirect('/login');
+			return res.redirect('/');
 		}
 
 		passport.authenticate('local', function(err, user, info) {
@@ -48,62 +100,29 @@ module.exports = {
 		})(req, res, next);
 	},
 
-	/*
-	* GET: /signup
-	*/
-	signup: function(req, res, next) {
-		res.render('account/signup');
-	},
+
 
 	/*
-	* POST: /signup
+	* GET: /forgot
 	*/
-	postSignup: function(req, res, next) {
-		req.assert('email', 'Email is not valid').isEmail();
-		req.assert('password', 'Password must be at least 6 characters long').len(6);
-		req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
-
-		var errors = req.validationErrors();
-		if (errors) {
-			req.flash('errors', errors);
-			return res.redirect('/signup');
-		}
-
-		Person.forge({
-			email    : req.body.email,
-			username : req.body.username,
-			password : req.body.password
-
-		}).save().then(function(model) {
-			req.flash('success', {msg: 'Success!'});
-
-			req.logIn(model, function(err) {
-				if (err) {
-					return next(err);
-				}
-
-				res.redirect('/');
-			});
-
-		}).otherwise(function (error) {
-			console.log(error);
-			req.flash('errors', {'msg': error.message});
-			res.redirect('/signup');
-		});
-	},
-
 	forgot: function(req, res, next) {
-		res.render('about/index', {
+		res.render('/forgot', {
 			fortune: fortune.getFortune()
 		});
 	},
 
+	/*
+	* POST: /forgot
+	*/
 	postForgot: function(req, res, next) {
-		res.render('about/index', {
+		res.render('/forgot', {
 			fortune: fortune.getFortune()
 		});
 	},
 
+	/*
+	* GET: /logout
+	*/
 	logout: function(req, res, next) {
 	    req.logout();
 		req.flash('success', {msg: 'You logged out!'});

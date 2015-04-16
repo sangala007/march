@@ -8,7 +8,7 @@ module.exports = function(config) {
 	}
 
 	var knex = require('knex')({
-		client     : 'mysql',
+		client     : config.db.client,
 		connection : config.db.connection,
 		pool       : {
 			min: 0,
@@ -16,6 +16,7 @@ module.exports = function(config) {
 		},
 		debug: true
 	});
+
 	Bookshelf = require('bookshelf')(knex);
 
 	// Patch for circular module dependency problem created by Bookshelf models.

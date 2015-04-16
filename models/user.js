@@ -1,19 +1,14 @@
 "use strict";
 
 const
-	Base    = require('./base'),
-	Address = require('./address'),
-	when    = require('when'),
-	bcrypt  = require('bcrypt-nodejs'),
-	_       = require('lodash');
+	Base   = require('./base'),
+	when   = require('when'),
+	bcrypt = require('bcrypt-nodejs'),
+	_      = require('lodash');
 
-var Person = Base.Model.extend({
+var User = Base.Model.extend({
 
-	tableName: 'people',
-
-	addresses: function() {
-		return this.hasMany(Address);
-	},
+	tableName: 'users',
 
 	comparePassword: function(candidatePassword) {
 		var deferred = when.defer();
@@ -58,4 +53,4 @@ var Person = Base.Model.extend({
 
 });
 
-module.exports = Base.model('Person', Person);
+module.exports = Base.model('User', User);

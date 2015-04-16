@@ -1,12 +1,12 @@
 "use strict";
 
 const
-	Person = require('../models/person');
+	User = require('../models/user');
 
 module.exports = {
 
 	index: function(req, res, next) {
-		new Person().fetchAll({
+		new User().fetchAll({
 			debug: true,
 			withRelated: ['addresses']
 

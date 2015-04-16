@@ -8,9 +8,12 @@ module.exports = function(app) {
 
 	app.get('/login', auth.isNotAuthenticated, AccountController.login);
 	app.post('/login', auth.isNotAuthenticated, AccountController.postLogin);
-	app.get('/signup', auth.isNotAuthenticated, AccountController.signup);
-	app.post('/signup', auth.isNotAuthenticated, AccountController.postSignup);
+
+	app.get('/account/create', auth.isNotAuthenticated, AccountController.create);
+	app.post('/account/create', auth.isNotAuthenticated, AccountController.postCreate);
+
 	app.get('/forgot', auth.isNotAuthenticated, AccountController.forgot);
 	app.post('/forgot', auth.isNotAuthenticated, AccountController.postForgot);
+
 	app.get('/logout', auth.isAuthenticated, AccountController.logout);
 };

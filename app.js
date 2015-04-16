@@ -78,6 +78,7 @@ var App = {
 				break;
 
 			default:
+				// Use only in development environment.
 				server.use(errorHandler());
 				break;
 		}

@@ -3,37 +3,37 @@
 var config = {
 	production: {
 		mode : 'production',
-		port : 3000,
+		port : 9000,
 		db   : {
 			client     : 'mysql',
 			connection : {
 				host     : 'localhost',
-				user     : '', 
-				password : '', 
+				user     : 'node', 
+				password : 'no1de2', 
 				port     : 3306, 
-				database : '',
+				database : 'cherry',
 				charset  : 'utf8'
 			}
 		},
-		cookieSecret : '',
+		cookieSecret : '123456ASDFGH',
 		mongodbUrl   : 'http://localhost:27017'
 	},
 
 	development: {
 		mode : 'development',
-		port : 3000,
+		port : 9000,
 		db   : {
 			client     : 'mysql',
 			connection : {
 				host     : 'localhost',
-				user     : '', 
-				password : '', 
+				user     : 'node', 
+				password : 'no1de2', 
 				port     : 3306, 
-				database : '',
+				database : 'cherry',
 				charset  : 'utf8'
 			}
 		},
-		cookieSecret : '',
+		cookieSecret : '123456ASDFGH',
 		mongodbUrl   : 'http://localhost:27017'
 	}
 };

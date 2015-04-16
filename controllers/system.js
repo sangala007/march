@@ -101,60 +101,6 @@ module.exports = {
 	}
 };
 
-// function insertUser(user, cb) {
-// 	bookshelf.transaction(function(t) {
-// 		var key = user.key;
-// 		Developer.forge({key: key}).fetch({require: true, transacting: t}).then(function(developerModel) {
-
-// 			var devID = developerModel.get('id');
-// 			Address.forge(user.address).save(null, {transacting: t}).then(function(addressModel) {
-// 				var addressID = addressModel.get('addressId');
-
-// 				Financial.forge(user.financial).save(null, {transacting: t}).then(function(financialModel) {
-
-// 					var financialID = financialModel.get('financialId');
-// 					var userEntity = user.personal;
-// 					userEntity.addressId = addressID;
-// 					userEntity.developerId = devID;
-// 					userEntity.financialId = financialId;
-
-// 					User.forge(userEntity).save(null, {transacting: t}).then(function(userModel) {
-// 						logger.info('saved user: ', userModel);
-// 						logger.info('commiting transaction');
-// 						t.commit(userModel);
-
-// 					}).catch(function(err) {
-// 						logger.error('Error saving user: ', err);
-// 						t.rollback(err);
-// 					});
-
-// 				}).catch(function(err) {
-// 					logger.error('Error saving financial data: ', err);
-// 					t.rollback(err);
-// 				})
-
-// 			}).catch(function(err) {
-// 				logger.error('Error saving address: ', err);
-// 				t.rollback(err);
-// 			})
-
-// 		}).catch(function(err) {
-// 			logger.error('Error saving business : ', err);
-// 			t.rollback(err);
-// 		})
-
-// 	}).then(function(model) {
-// 		logger.info(model, ' successfully saved');
-// 		return Promise.resolve(respond.success({userId: model.get('userId')}));
-
-// 	}).catch(function(err) {
-// 		logger.error(err, ' occurred');
-// 		return Promise.reject(new DatabaseError('Unable to write user to database due to error ', err.message));
-// 	})
-// };
-
-
-
 
 
 

@@ -9,8 +9,8 @@ module.exports = function(app) {
 	app.get('/login', auth.isNotAuthenticated, AccountController.login);
 	app.post('/login', auth.isNotAuthenticated, AccountController.postLogin);
 
-	app.get('/account/create', auth.isNotAuthenticated, AccountController.create);
-	app.post('/account/create', auth.isNotAuthenticated, AccountController.postCreate);
+	app.get('/account/create', AccountController.create);
+	app.post('/account/create', AccountController.postCreate);
 
 	app.get('/forgot', auth.isNotAuthenticated, AccountController.forgot);
 	app.post('/forgot', auth.isNotAuthenticated, AccountController.postForgot);

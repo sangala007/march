@@ -3,9 +3,6 @@
   <head>
     <title>March App</title>
 	<meta name="csrf-token" content="{{_csrf}}" />
-    {{#if showTests}}
-	    <link rel="stylesheet" href="/vendor/mocha.css">
-    {{/if}}
     <script src="//code.jquery.com/jquery-2.0.2.min.js"></script>
 
     <!-- Bootstrap core CSS -->
@@ -14,9 +11,6 @@
   </head>
   
   <body>
-  	<header><img src="/images/logo.gif"></header>
-  	<br />
-
 	{{> flash}}
 
 	{{#if user}}
@@ -26,20 +20,5 @@
 	{{{body}}}
 
 	{{> footer}}
-
-	{{#if showTests}}
-		<div id="mocha"></div>
-		<script src="/vendor/mocha.js"></script>
-		<script src="/vendor/chai.js"></script>
-		<script>
-			mocha.ui('tdd');
-			var assert = chai.assert;
-		</script>
-		<script src="/qa/tests-global.js"></script>
-		{{#if pageTestScript}}
-			<script src="{{pageTestScript}}"></script>
-		{{/if}}
-		<script>mocha.run();</script>
-	{{/if}}
   </body>
 </html>

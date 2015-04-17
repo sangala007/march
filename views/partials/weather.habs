@@ -1,8 +1,0 @@
-<div class="weatherWidget">
-	{{#each partials.weather.locations}}
-		<div class="location">
-			<h3>{{name}}</h3>
-			<p>{{weather}}, {{temp}}</p>
-		</div>
-	{{/each}}
-</div>

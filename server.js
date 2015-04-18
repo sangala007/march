@@ -98,7 +98,6 @@ module.exports = function(config) {
 
 	// Make user object available in templates.
 	server.use(function(req, res, next) {
-		console.log(req.headers);
 		if (req.user) {
 		  res.locals.user    = req.user.toJSON();
 		  req.session.userid = req.user.get('id');

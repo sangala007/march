@@ -34,7 +34,7 @@ module.exports = {
 			return;
 		}
 
-		var isProxied = Util.isProxied(req);
+		var isFromCrow = Util.isFromCrow(req);
 
 		// Save new user.
 		User.forge({
@@ -51,7 +51,7 @@ module.exports = {
 				if (err) { return next(err); }
 
 				// Request proxied from CROW, redirect to next step.
-				if (isProxied) {
+				if (isFromCrow) {
 					res.redirect('/system/create');
 					return;
 				}

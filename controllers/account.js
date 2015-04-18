@@ -1,6 +1,7 @@
 "use strict";
 
 const
+	Util     = require('../lib/util'),
 	User     = require('../models/user'),
 	passport = require('passport'),
 	_        = require('lodash');
@@ -33,6 +34,8 @@ module.exports = {
 			return;
 		}
 
+		var isProxied = Util.isProxied(req);
+
 		// Save new user.
 		User.forge({
 			name     : req.body.name,
@@ -45,11 +48,15 @@ module.exports = {
 			req.flash('success', {msg: 'Success!'});
 
 			req.logIn(model, function(err) {
-				if (err) {
-					return next(err);
+				if (err) { return next(err); }
+
+				// Request proxied from CROW, redirect to next step.
+				if (isProxied) {
+					res.redirect('/system/create');
+					return;
 				}
 
-				res.redirect('/system/create');
+				res.redirect('/account/create');
 			});
 
 		}).otherwise(function (error) {

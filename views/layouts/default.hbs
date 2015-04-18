@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>March App</title>
-	<meta name="csrf-token" content="{{_csrf}}" />
+    <title>RAVEN</title>
+    <meta name="csrf-token" content="{{_csrf}}" />
     <script src="//code.jquery.com/jquery-2.0.2.min.js"></script>
 
     <!-- Bootstrap core CSS -->
@@ -11,6 +11,8 @@
   </head>
   
   <body>
+	{{> header}}
+
 	{{> flash}}
 
 	{{#if user}}

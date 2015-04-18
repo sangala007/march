@@ -6,18 +6,18 @@ const
 	User       = require('../models/user'),
 	System     = require('../models/system'),
 	SystemUser = require('../models/system_user'),
-	util       = require('../lib/util'),
+	Util       = require('../lib/util'),
 	passport   = require('passport'),
 	_          = require('lodash'),
 	moment     = require("moment-timezone"),
 
 	timeZonesList = moment.tz.names();
 
-// module.exports = function(app) {
 module.exports = {
 
 	/*
 	* GET: /system/create
+	* Only from PI device.
 	*/
 	create: function(req, res, next) {
 		res.render('system/create',{
@@ -27,6 +27,7 @@ module.exports = {
 
 	/*
 	* POST: /system/create
+	* Only from PI device.
 	*/
 	postCreate: function(req, res, next) {
 		req.assert('name', 'Name cannot be blank.').notEmpty();
@@ -46,8 +47,7 @@ module.exports = {
 			// 1. Create new system.
 			System.forge({
 				name     : req.body.name,
-				timezone : req.body.timezone,
-				suid     : util.generateSUID()			
+				timezone : req.body.timezone
 
 			}).save(null, {transacting: t}).then(function(systemModel) {
 				// 2. Create new system user.
@@ -68,17 +68,17 @@ module.exports = {
 				throw e;
 			});
 
-		}).then(function(model) {
+		}).then(function(systemUserModel) {
 			req.flash('success', {msg: 'Success!'});
 
-			// Need to add system.suid to response HEADERS.
-			// so CROW can save it on PI.
-			// res.redirect('/devices/system/12');
+			// Add encrypted system_id as token to response HEADERS.
+			res.setHeader('x-special-suid-header', Util.idToToken(systemUserModel.get('system_id')));
 
+			// TO DO! Continue on flow to include devices.
 			res.redirect('/system/create');
 
 		}).catch(function(e) {
-			logger.log('ERROR saving system:' + e);
+			console.log('ERROR saving system:' + e);
 			req.flash('errors', {'msg': e.message});
 			res.redirect('/system/create');
 		});

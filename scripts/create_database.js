@@ -54,7 +54,6 @@ dbh.query('DROP TABLE IF EXISTS systems');
 dbh.query('\
 CREATE TABLE systems (\
     id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, \
-    suid VARCHAR(20) NOT NULL, \
     name VARCHAR(50) NOT NULL, \
     timezone VARCHAR(100) NOT NULL, \
     armed TINYINT(1) UNSIGNED NOT NULL DEFAULT 0, \

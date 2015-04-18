@@ -1,9 +1,9 @@
 "use strict";
 
 const
-	Util     = require('../lib/util'),
 	User     = require('../models/user'),
 	passport = require('passport'),
+	Util     = require('../lib/util'),
 	_        = require('lodash');
 
 module.exports = {

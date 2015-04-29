@@ -3,7 +3,7 @@
 var config = {
 	production: {
 		mode : 'production',
-		port : 9000,
+		port : 3001,
 		db   : {
 			client     : 'mysql',
 			connection : {
@@ -21,7 +21,7 @@ var config = {
 
 	development: {
 		mode : 'development',
-		port : 9000,
+		port : 3001,
 		db   : {
 			client     : 'mysql',
 			connection : {

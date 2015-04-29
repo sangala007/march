@@ -3,7 +3,7 @@
 const
 	User     = require('../models/user'),
 	passport = require('passport'),
-	Util     = require('../lib/util'),
+	Auth     = require('../lib/auth'),
 	_        = require('lodash');
 
 module.exports = {
@@ -34,7 +34,7 @@ module.exports = {
 			return;
 		}
 
-		var isFromCrow = Util.isFromCrow(req);
+		var isFromCrow = Auth.isCrowHeader(req);
 
 		// Save new user.
 		User.forge({
@@ -62,7 +62,7 @@ module.exports = {
 		}).otherwise(function (error) {
 			console.log(error);
 			req.flash('errors', {'msg': error.message});
-			res.redirect('/account/create');
+			res.render('account/create', {params: req.body});
 		});
 	},
 

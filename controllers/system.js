@@ -6,7 +6,7 @@ const
 	User       = require('../models/user'),
 	System     = require('../models/system'),
 	SystemUser = require('../models/system_user'),
-	Util       = require('../lib/util'),
+	Util       = require('../../lib/util'),
 	passport   = require('passport'),
 	_          = require('lodash'),
 	moment     = require("moment-timezone"),
